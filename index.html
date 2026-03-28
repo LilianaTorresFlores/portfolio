@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liliana Torres Flores | Conversational UX Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --cream: #f5efe6;
+            --cream-light: #faf7f2;
+            --copper: #a0714f;
+            --copper-dark: #7a5636;
+            --copper-light: #c4956e;
+            --brown: #5c3d2e;
+            --text: #3a2a1f;
+            --text-light: #6b5647;
+            --white: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(245,239,230,.85);
+            border-bottom: 1px solid rgba(160,113,79,.1);
+            transition: all .3s;
+        }
+        nav.scrolled { box-shadow: 0 2px 30px rgba(92,61,46,.08); }
+        .nav-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--copper-dark);
+            letter-spacing: .5px;
+        }
+        .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: .85rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color .3s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1.5px;
+            background: var(--copper);
+            transition: width .3s;
+        }
+        .nav-links a:hover { color: var(--copper); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px; height: 2px;
+            background: var(--copper-dark);
+            transition: all .3s;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 3rem 4rem;
+            position: relative;
+        }
+        .hero-inner {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-text { z-index: 2; }
+        .hero-label {
+            font-size: .8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--copper);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--copper-dark);
+            margin-bottom: 1.5rem;
+        }
+        .hero-title span {
+            display: block;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--copper);
+        }
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 480px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .9rem 2.2rem;
+            background: var(--copper);
+            color: var(--cream);
+            text-decoration: none;
+            font-size: .85rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all .4s;
+        }
+        .hero-cta:hover {
+            background: var(--copper-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(160,113,79,.3);
+        }
+        .hero-photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-photo img {
+            width: 380px;
+            height: 480px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 200px 200px 30px 30px;
+            box-shadow: 0 20px 60px rgba(92,61,46,.15);
+        }
+        .hero-photo::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 500px;
+            border: 2px solid var(--copper-light);
+            border-radius: 200px 200px 30px 30px;
+            top: 15px; left: calc(50% - 185px);
+            opacity: .4;
+        }
+
+        /* ── decorative starburst ── */
+        .starburst {
+            width: 40px; height: 40px;
+            display: inline-block;
+        }
+        .starburst svg { fill: var(--copper); }
+
+        /* ── dot grid decoration ── */
+        .dot-grid {
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            gap: 6px;
+            position: absolute;
+            opacity: .25;
+        }
+        .dot-grid span {
+            width: 5px; height: 5px;
+            background: var(--copper);
+            border-radius: 50%;
+        }
+
+        /* ── SECTIONS ── */
+        section { padding: 6rem 3rem; }
+        .section-label {
+            font-size: .75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--copper);
+            font-weight: 500;
+            margin-bottom: .8rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            color: var(--copper-dark);
+            margin-bottom: 1rem;
+        }
+        .section-line {
+            width: 60px; height: 2px;
+            background: var(--copper-light);
+            margin-bottom: 3rem;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* ── ABOUT ── */
+        .about { background: var(--cream-light); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+        .about-stats {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .stat-card {
+            background: var(--cream);
+            padding: 1.8rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(160,113,79,.1);
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--copper);
+        }
+        .stat-label {
+            font-size: .8rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: .3rem;
+        }
+
+        /* ── EXPERIENCE ── */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--copper-light), rgba(160,113,79,.1));
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .6s ease;
+        }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 6px;
+            width: 12px; height: 12px;
+            background: var(--copper);
+            border-radius: 50%;
+            border: 3px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--copper-light);
+            transform: translateX(-5px);
+        }
+        .timeline-date {
+            font-size: .8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--copper);
+            font-weight: 500;
+            margin-bottom: .4rem;
+        }
+        .timeline-role {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--copper-dark);
+            margin-bottom: .2rem;
+        }
+        .timeline-company {
+            font-size: .95rem;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: .8rem;
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+        }
+        .timeline-logo {
+            height: 22px;
+            width: auto;
+            object-fit: contain;
+            opacity: .6;
+            transition: opacity .3s;
+        }
+        .timeline-item:hover .timeline-logo { opacity: 1; }
+        .timeline-desc {
+            font-size: .92rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        .timeline-desc li {
+            margin-bottom: .4rem;
+            list-style: none;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .timeline-desc li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: .65rem;
+            width: 5px; height: 5px;
+            background: var(--copper-light);
+            border-radius: 50%;
+        }
+
+        /* ── PROJECTS ── */
+        .projects { background: var(--cream-light); }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(160,113,79,.08);
+            transition: all .4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--copper-light), var(--copper));
+            opacity: 0;
+            transition: opacity .4s;
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 50px rgba(92,61,46,.1);
+        }
+        .project-card:hover::before { opacity: 1; }
+        .project-year {
+            font-size: .75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--copper);
+            font-weight: 600;
+        }
+        .project-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--copper-dark);
+            margin: .6rem 0 1rem;
+        }
+        .project-desc {
+            font-size: .92rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: .8rem;
+        }
+        .project-logo {
+            width: 80px;
+            height: 40px;
+            object-fit: contain;
+            opacity: .7;
+            transition: opacity .3s;
+            flex-shrink: 0;
+        }
+        .project-card:hover .project-logo { opacity: 1; }
+        .project-tag {
+            display: inline-block;
+            margin-top: 1.2rem;
+            padding: .35rem 1rem;
+            background: rgba(160,113,79,.08);
+            color: var(--copper);
+            font-size: .75rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+        }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .skill-group {
+            background: var(--cream-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(160,113,79,.08);
+        }
+        .skill-group-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--copper-dark);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+        .skill-group-title .icon {
+            width: 32px; height: 32px;
+            background: var(--copper);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .skill-group-title .icon svg {
+            width: 16px; height: 16px;
+            fill: var(--cream);
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+        .skill-tag {
+            padding: .4rem 1rem;
+            background: var(--cream);
+            color: var(--text-light);
+            font-size: .82rem;
+            font-weight: 400;
+            border-radius: 50px;
+            border: 1px solid rgba(160,113,79,.12);
+            transition: all .3s;
+        }
+        .skill-tag:hover {
+            background: var(--copper);
+            color: var(--cream);
+            border-color: var(--copper);
+        }
+
+        /* ── EDUCATION ── */
+        .education { background: var(--cream-light); }
+        .edu-card {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(160,113,79,.08);
+        }
+        .edu-icon {
+            width: 80px; height: 80px;
+            min-width: 80px;
+            background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .edu-icon svg {
+            width: 36px; height: 36px;
+            fill: var(--cream);
+        }
+        .edu-degree {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--copper-dark);
+            margin-bottom: .3rem;
+        }
+        .edu-school {
+            font-size: 1rem;
+            color: var(--copper);
+            font-weight: 500;
+            margin-bottom: .3rem;
+        }
+        .edu-detail {
+            font-size: .9rem;
+            color: var(--text-light);
+        }
+        .edu-extras {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .edu-extra {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(160,113,79,.08);
+            flex: 1;
+            min-width: 250px;
+        }
+        .edu-extra-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--copper-dark);
+            font-weight: 600;
+            margin-bottom: .3rem;
+        }
+        .edu-extra-desc {
+            font-size: .88rem;
+            color: var(--text-light);
+        }
+
+        /* ── CONTACT ── */
+        .contact {
+            background: var(--copper-dark);
+            color: var(--cream);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            border: 2px solid rgba(245,239,230,.06);
+            border-radius: 50%;
+        }
+        .contact::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 250px; height: 250px;
+            border: 2px solid rgba(245,239,230,.04);
+            border-radius: 50%;
+        }
+        .contact .section-label { color: var(--copper-light); }
+        .contact .section-title { color: var(--cream); }
+        .contact .section-line {
+            margin-left: auto;
+            margin-right: auto;
+            background: var(--copper-light);
+        }
+        .contact-desc {
+            font-size: 1.05rem;
+            color: rgba(245,239,230,.7);
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            padding: 1rem 2rem;
+            background: rgba(245,239,230,.08);
+            border: 1px solid rgba(245,239,230,.12);
+            border-radius: 50px;
+            color: var(--cream);
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 400;
+            transition: all .3s;
+        }
+        .contact-link:hover {
+            background: rgba(245,239,230,.15);
+            transform: translateY(-2px);
+        }
+        .contact-link svg {
+            width: 18px; height: 18px;
+            fill: var(--copper-light);
+        }
+        .languages {
+            margin-top: 3rem;
+            font-size: .85rem;
+            color: rgba(245,239,230,.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--brown);
+            text-align: center;
+            padding: 2rem;
+            font-size: .8rem;
+            color: rgba(245,239,230,.35);
+            letter-spacing: 1px;
+        }
+
+        /* ── ANIMATIONS ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all .7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--cream);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid rgba(160,113,79,.1);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-photo { order: -1; }
+            .hero-photo img { width: 280px; height: 350px; }
+            .hero-photo::before { width: 300px; height: 370px; left: calc(50% - 135px); }
+            .about-grid { grid-template-columns: 1fr; }
+            section { padding: 4rem 1.5rem; }
+            .edu-card { flex-direction: column; text-align: center; padding: 2rem; }
+            .contact-links { flex-direction: column; align-items: center; }
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 7rem 1.5rem 3rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-name">Liliana Torres Flores</div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-text fade-up">
+            <p class="hero-label">Conversational UX Designer &amp; UX Writing Lead</p>
+            <h1 class="hero-title">
+                Liliana
+                <span>Torres Flores</span>
+            </h1>
+            <p class="hero-desc">
+                Crafting meaningful conversations between humans and AI.
+                Specialized in scaling content systems, defining UX writing practices,
+                and designing end-to-end experiences that align business goals with user needs.
+            </p>
+            <a href="#contact" class="hero-cta">
+                Get in Touch
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+        <div class="hero-photo fade-up">
+            <img src="lily-photo.jpeg" alt="Liliana Torres Flores">
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text fade-up">
+                <p class="section-label">About</p>
+                <h2 class="section-title">Designing conversations<br>that matter</h2>
+                <div class="section-line"></div>
+                <p>
+                    I'm Liliana Torres, a passionate professional in Conversational AI and UX Writing, with a strong background in computational linguistics. My journey began in 2017, focusing on AI, machine learning, and crafting engaging conversational interfaces.
+                </p>
+                <p>
+                    Specializing in scalable content systems and Design Ops, I lead teams to create cohesive, user-centered experiences that align business goals with user needs. I design and optimize AI-powered products and virtual assistants, ensuring consistency in voice &amp; tone and improving user interactions across touchpoints.
+                </p>
+                <p>
+                    In my current role, I drive cross-functional collaboration, scaling UX Writing practices and ensuring content quality through agile workflows and content governance.
+                </p>
+            </div>
+            <div class="about-stats fade-up">
+                <div class="stat-card">
+                    <div class="stat-number">9+</div>
+                    <div class="stat-label">Years in AI &amp; UX</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Companies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">AI Projects</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <div class="container">
+        <p class="section-label fade-up">Experience</p>
+        <h2 class="section-title fade-up">Professional Journey</h2>
+        <div class="section-line fade-up"></div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Jan 2026 &mdash; Present</div>
+                <div class="timeline-role">Design Ops UX Writing Lead</div>
+                <div class="timeline-company">UiX <img src="logos/uix_of_logo.jpg" alt="UiX" class="timeline-logo"></div>
+                <ul class="timeline-desc">
+                    <li>Defined and scaled UX Writing practice across multiple products through frameworks, workflows, and governance models</li>
+                    <li>Built reusable content systems and templates to ensure voice &amp; tone consistency</li>
+                    <li>Led Design Ops initiatives to increase scalability, efficiency, and content quality</li>
+                    <li>Facilitated cross-functional alignment across Product, Design, and Business</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Jul 2025 &mdash; Dec 2025</div>
+                <div class="timeline-role">UX Writer Lead</div>
+                <div class="timeline-company">UiX <img src="logos/uix_of_logo.jpg" alt="UiX" class="timeline-logo"></div>
+                <ul class="timeline-desc">
+                    <li>Led content strategy for fintech product (Presta Prenda)</li>
+                    <li>Designed and launched PAM, a generative AI assistant using prompt engineering and RAG</li>
+                    <li>Established voice &amp; tone guidelines across the product ecosystem</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Feb 2025 &mdash; Jun 2025</div>
+                <div class="timeline-role">UX Writer</div>
+                <div class="timeline-company">UiX <img src="logos/uix_of_logo.jpg" alt="UiX" class="timeline-logo"></div>
+                <ul class="timeline-desc">
+                    <li>Designed conversational UX for a gamified AI-powered agent in a loyalty program</li>
+                    <li>Created microcopy for onboarding, engagement, and transactional flows</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Jun 2024 &mdash; Oct 2024</div>
+                <div class="timeline-role">Conversational AI Consultant</div>
+                <div class="timeline-company">Deloitte <img src="logos/deloitte.svg" alt="Deloitte" class="timeline-logo"></div>
+                <ul class="timeline-desc">
+                    <li>Redesigned IVR conversational flows for a U.S. banking client</li>
+                    <li>Defined bilingual (EN/ES) voice &amp; tone systems</li>
+                    <li>Built heuristic evaluation frameworks to improve conversational performance</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Oct 2021 &mdash; May 2024</div>
+                <div class="timeline-role">Conversational AI Analyst</div>
+                <div class="timeline-company">Espressive <img src="logos/espressive.png" alt="Espressive" class="timeline-logo"></div>
+                <ul class="timeline-desc">
+                    <li>Trained and evaluated NLP and LLM-based conversational systems</li>
+                    <li>Developed corpora and improved intent classification accuracy</li>
+                    <li>Collaborated with product and engineering teams on localization and UX</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Sep 2020 &mdash; Sep 2021</div>
+                <div class="timeline-role">Conversational UX Designer</div>
+                <div class="timeline-company">Yalo <img src="logos/yalo.svg" alt="Yalo" class="timeline-logo"></div>
+                <ul class="timeline-desc">
+                    <li>Designed end-to-end conversational flows for retail clients</li>
+                    <li>Improved UX performance using data-driven iterations</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Mar 2019 &mdash; Oct 2020</div>
+                <div class="timeline-role">Technical Project Specialist</div>
+                <div class="timeline-company">Oriflame <img src="logos/oriflame.png" alt="Oriflame" class="timeline-logo"></div>
+                <ul class="timeline-desc">
+                    <li>Led development of an AI chatbot for customer service</li>
+                    <li>Defined content, automation flows, and performance metrics</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">May 2017 &mdash; Oct 2018</div>
+                <div class="timeline-role">Computational Linguist</div>
+                <div class="timeline-company">Artificial Nerds</div>
+                <ul class="timeline-desc">
+                    <li>Built NLP models for conversational commerce</li>
+                    <li>Designed chatbots according to customer brand guidelines</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+    <div class="container">
+        <p class="section-label fade-up">Projects</p>
+        <h2 class="section-title fade-up">Selected Work</h2>
+        <div class="section-line fade-up"></div>
+
+        <div class="projects-grid">
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2026</div>
+                        <h3 class="project-name">Crypto Lending Platform</h3>
+                    </div>
+                    <img src="logos/uix_of_logo.jpg" alt="UiX" class="project-logo">
+                </div>
+                <p class="project-desc">
+                    Developed the UX communication for a loan platform that uses Bitcoin in custody as collateral to offer loans in USDT. Responsible for creating the copy and establishing the voice of the product, working on key flows such as loan quotation and payment, optimizing language to reduce friction, simplify financial concepts, and build user confidence.
+                </p>
+                <span class="project-tag">Crypto / Fintech / UX Writing</span>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2025</div>
+                        <h3 class="project-name">Pawn Shop App</h3>
+                    </div>
+                    <img src="logos/uix_of_logo.jpg" alt="UiX" class="project-logo">
+                </div>
+                <p class="project-desc">
+                    Designed an intuitive app for managing payments and financial services securely. Created screens for permission requests, payment notifications, error messages, and confirmations. Mapped detailed user journeys, wrote user-friendly copywriting, and conducted usability testing to refine the experience.
+                </p>
+                <span class="project-tag">Fintech / UX Design / App</span>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2025</div>
+                        <h3 class="project-name">PAM AI Assistant</h3>
+                    </div>
+                    <img src="logos/uix_of_logo.jpg" alt="UiX" class="project-logo">
+                </div>
+                <p class="project-desc">
+                    A generative AI assistant built using conversational design, prompt engineering,
+                    and RAG-based architecture. Enabled scalable user support across multiple
+                    fintech products and touchpoints at UiX.
+                </p>
+                <span class="project-tag">LLM / RAG / Fintech</span>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2020</div>
+                        <h3 class="project-name">Levi's Mexico</h3>
+                    </div>
+                    <img src="logos/levis.svg" alt="Levi's" class="project-logo">
+                </div>
+                <p class="project-desc">
+                    A WhatsApp chatbot helping Levi's customers make purchases and get information
+                    about campaigns during the lockdown. Designed conversational flows focused on
+                    commerce and customer experience.
+                </p>
+                <span class="project-tag">Retail / WhatsApp</span>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2020</div>
+                        <h3 class="project-name">Sodimac Colombia</h3>
+                    </div>
+                    <img src="logos/sodimac.svg" alt="Sodimac" class="project-logo">
+                </div>
+                <p class="project-desc">
+                    A retail chatbot for Sodimac's Homecenter that helped customers buy items,
+                    track orders, and access customer service through WhatsApp.
+                </p>
+                <span class="project-tag">Retail / Customer Service</span>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2020</div>
+                        <h3 class="project-name">Mercado Pago Point</h3>
+                    </div>
+                    <img src="logos/mercadopago.svg" alt="Mercado Pago" class="project-logo">
+                </div>
+                <p class="project-desc">
+                    Designed a chatbot to clarify questions for terminal resellers, helping
+                    representatives learn about products, registration, and the rewards program.
+                </p>
+                <span class="project-tag">Fintech / B2B</span>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2019</div>
+                        <h3 class="project-name">Anna &mdash; Oriflame</h3>
+                    </div>
+                    <img src="logos/oriflame.png" alt="Oriflame" class="project-logo">
+                </div>
+                <p class="project-desc">
+                    Oriflame's first company AI assistant, helping brand members consult data
+                    such as credit balance, product returns, and FAQs. Her personality was
+                    designed to be nice, close, and polite.
+                </p>
+                <span class="project-tag">AI Assistant / Beauty</span>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-header">
+                    <div>
+                        <div class="project-year">2018</div>
+                        <h3 class="project-name">Belisar.io</h3>
+                    </div>
+                    <img src="logos/belisar.png" alt="Belisar.io" class="project-logo" style="width:50px;height:50px;border-radius:10px;">
+                </div>
+                <p class="project-desc">
+                    A playful chatbot connected to the Mexican Chamber of Deputies' Facebook,
+                    creating proximity between citizens and the electoral process in Mexico.
+                    Featured gamification and civic engagement.
+                </p>
+                <span class="project-tag">Civic Tech / Facebook</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="container">
+        <p class="section-label fade-up">Skills</p>
+        <h2 class="section-title fade-up">Expertise</h2>
+        <div class="section-line fade-up"></div>
+
+        <div class="skills-grid">
+            <div class="skill-group fade-up">
+                <div class="skill-group-title">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" fill="none" stroke="currentColor"/></svg>
+                    </div>
+                    UX Writing &amp; Content
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">UX Writing</span>
+                    <span class="skill-tag">Content Design</span>
+                    <span class="skill-tag">Microcopy</span>
+                    <span class="skill-tag">Voice & Tone</span>
+                    <span class="skill-tag">Localization</span>
+                    <span class="skill-tag">Accessibility</span>
+                    <span class="skill-tag">Information Architecture</span>
+                </div>
+            </div>
+            <div class="skill-group fade-up">
+                <div class="skill-group-title">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    Design Ops &amp; Strategy
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Content Systems</span>
+                    <span class="skill-tag">Governance</span>
+                    <span class="skill-tag">Scalable Frameworks</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">Agile Workflows</span>
+                    <span class="skill-tag">Product Strategy</span>
+                </div>
+            </div>
+            <div class="skill-group fade-up">
+                <div class="skill-group-title">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                    </div>
+                    AI &amp; Conversational Design
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">LLMs</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                    <span class="skill-tag">RAG Systems</span>
+                    <span class="skill-tag">NLP</span>
+                    <span class="skill-tag">Conversational UX</span>
+                    <span class="skill-tag">IVR Design</span>
+                </div>
+            </div>
+            <div class="skill-group fade-up">
+                <div class="skill-group-title">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    </div>
+                    Tools
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Miro</span>
+                    <span class="skill-tag">Whimsical</span>
+                    <span class="skill-tag">Lucidchart</span>
+                    <span class="skill-tag">Visio</span>
+                    <span class="skill-tag">Crowdin</span>
+                    <span class="skill-tag">Frontitude</span>
+                    <span class="skill-tag">Ditto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+    <div class="container">
+        <p class="section-label fade-up">Education</p>
+        <h2 class="section-title fade-up">Academic Background</h2>
+        <div class="section-line fade-up"></div>
+
+        <div class="edu-card fade-up">
+            <div class="edu-icon" style="background:none;border-radius:0;">
+                <img src="logos/unam.svg" alt="UNAM" style="width:80px;height:80px;object-fit:contain;">
+            </div>
+            <div>
+                <div class="edu-degree">Lengua y Literaturas Hispánicas</div>
+                <div class="edu-school">Universidad Nacional Autónoma de México (UNAM)</div>
+                <div class="edu-detail">Major in Computational Linguistics &mdash; 2012</div>
+            </div>
+        </div>
+
+        <div class="edu-extras fade-up">
+            <div class="edu-extra">
+                <div class="edu-extra-title">Grupo de Ingeniería Lingüística</div>
+                <div class="edu-extra-desc">Research member from 2015 to 2017 &mdash; UNAM</div>
+            </div>
+            <div class="edu-extra">
+                <div class="edu-extra-title">Diplomado en Diseño y Produccion Editorial</div>
+                <div class="edu-extra-desc">Publishing certification &mdash; 2023</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="container">
+        <p class="section-label fade-up">Contact</p>
+        <h2 class="section-title fade-up">Let's Connect</h2>
+        <div class="section-line fade-up"></div>
+        <p class="contact-desc fade-up">
+            Interested in working together? I'd love to hear about your project
+            and how I can help bring your conversational experiences to life.
+        </p>
+        <div class="contact-links fade-up">
+            <a href="mailto:lilianatorres0412@gmail.com" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                lilianatorres0412@gmail.com
+            </a>
+            <a href="tel:+525576123555" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +52 55 7612 3555
+            </a>
+        </div>
+        <p class="languages fade-up">Spanish (Native) &bull; English (C1)</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    &copy; 2026 Liliana Torres Flores. All rights reserved.
+</footer>
+
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger menu
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(a => {
+        a.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up, .timeline-item').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
