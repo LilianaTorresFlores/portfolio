@@ -37,7 +37,8 @@ button { border-radius: var(--radius); }
 
 /* Navigation */
 nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px max(var(--gutter), calc((100vw - var(--max)) / 2)); background: var(--background); border-bottom: 1px solid var(--line); }
-.nav-name { font: 500 23px/1.2 var(--heading); white-space: nowrap; }
+.nav-name { font: 500 23px/1.2 var(--heading); white-space: nowrap; text-decoration: none; }
+.nav-name:hover { color: var(--accent-ink); }
 .nav-links { display: flex; gap: 24px; list-style: none; padding: 0; margin: 0; }
 .nav-links a { text-decoration: none; font-size: 13px; padding-block: 8px; }
 .nav-links a:hover { text-decoration: underline; text-decoration-color: var(--accent-ink); }

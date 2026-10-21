@@ -3,6 +3,7 @@ const links = document.getElementById('navLinks');
 function closeMenu() { links.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'Open navigation'); }
 menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; links.classList.toggle('open', open); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); });
 links.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.querySelector('.nav-name').addEventListener('click', closeMenu);
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && links.classList.contains('open')) { closeMenu(); menu.focus(); } });
 window.matchMedia('(min-width: 761px)').addEventListener('change', closeMenu);
 const dialog = document.getElementById('credential-dialog');
