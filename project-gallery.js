@@ -124,7 +124,7 @@
       item.append(link);
       resources.append(item);
     }
-    text('project-reference-label', project.video ? 'If playback is unavailable' : 'Press');
+    text('project-reference-label', project.referenceLabel || (project.video ? 'If playback is unavailable' : 'Press'));
     document.getElementById('project-references').hidden = !resources.childElementCount;
   }
 

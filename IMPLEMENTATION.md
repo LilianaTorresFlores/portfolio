@@ -96,3 +96,9 @@ Three publications and the active diploma link verified at 1440x900, 1280x720, 1
 
 ## Production release authorized by owner
 Removed the editorial project's team label from its card and detail view; author metadata remains on the two academic records. The source PDF remains unchanged. The owner explicitly approved pushing and publishing this iteration to production. GitHub Pages configuration verified: main branch, repository root, legacy build. The existing deployment configuration is retained. Local checks cover responsive publication/project viewers, keyboard behavior and source links. Final release verification is performed against the published commit.
+
+
+## November 2026: Conversational AI positioning and PrestaPrenda Go
+Owner approved production publication. Hero, About, Contact and sharing descriptions now emphasize Conversational AI, design leadership and human needs. All 19 Tools remain, with AI tools first. Experience content, its chronology and the 9+ reference are preserved. The editorial diploma label and degree-completion report description now use English.
+PrestaPrenda Go replaces the unreleased Pawn Shop App label, preserving its approved description. Seven original Google Play promotional screenshots are included (01, 02, 03, 04, 06, 07, 08); the calendar image “Mantén tus pagos al día” (05) is excluded. Existing project viewer is reused with an Android/Google Play reference. The transparent monochrome wordmark is saved in logos/prestaprenda-wordmark.png; original provided JPEG is retained. No new dependencies or deployment configuration changes.
+Responsive text/tool checks pass at 1440/1024/390/320px. Project media checks pass at desktop, laptop and mobile sizes: all seven selected images load, side arrows stay clear, Escape and focus restoration work. Existing eight projects and three publications remain. JavaScript syntax and whitespace checks pass. Review files stay in gitignored .review.

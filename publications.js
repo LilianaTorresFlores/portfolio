@@ -22,7 +22,7 @@ window.portfolioPublications = [
     year: '2024',
     institution: 'Universidad Nacional Autónoma de México · Facultad de Filosofía y Letras',
     category: 'Degree-completion report',
-    description: 'Informe de ampliación y profundización de conocimientos mediante diplomados de Educación Continua de la FFyL o de la UNAM.',
+    description: 'Degree-completion report based on advanced study through continuing education diploma programs at UNAM or its Faculty of Philosophy and Letters.',
     advisor: 'Dra. Melanie del Carmen Salgado López',
     document: 'https://tesiunamdocumentos.dgb.unam.mx/ptd2024/abr_jun/0858002/0858002.pdf',
     links: [
@@ -33,7 +33,7 @@ window.portfolioPublications = [
   {
     id: 'editorial-diploma',
     title: 'Editorial diploma project',
-    institution: 'Diplomado en Diseño y Producción Editorial',
+    institution: 'Diploma in Editorial Design and Production',
     category: 'Editorial design',
     description: 'An editorial sample exploring Greek mythology and vocabulary, presented in its original spreads.',
     document: 'https://drive.google.com/file/d/1nvU9rcfPscBbQ3U82oEWH5ueQIhgaewz/view',

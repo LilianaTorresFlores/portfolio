@@ -1,5 +1,61 @@
 // Public project evidence. Original files are preserved; only relevant media is displayed.
 window.portfolioProjects = [
+{
+  "id": "project-1",
+  "images": [
+    {
+      "src": "assets/projects/prestaprenda-go/google-play-01.png",
+      "alt": "PrestaPrenda Go Android app home screen with loans, payments and the digital vault.",
+      "width": 1086,
+      "height": 1926
+    },
+    {
+      "src": "assets/projects/prestaprenda-go/google-play-02.png",
+      "alt": "PrestaPrenda Go loan receipts and pledged items with amounts and payment deadlines.",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "assets/projects/prestaprenda-go/google-play-03.png",
+      "alt": "PrestaPrenda Go digital vault showing pledged jewelry and valuations.",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "assets/projects/prestaprenda-go/google-play-04.png",
+      "alt": "PrestaPrenda Go loan simulator with jewelry types and gold purity selection.",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "assets/projects/prestaprenda-go/google-play-06.png",
+      "alt": "PrestaPrenda Go payment customization with interest-only and principal repayment options.",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "assets/projects/prestaprenda-go/google-play-07.png",
+      "alt": "PrestaPrenda Go loan payment details, outstanding amounts and pledged pieces.",
+      "width": 1080,
+      "height": 1920
+    },
+    {
+      "src": "assets/projects/prestaprenda-go/google-play-08.png",
+      "alt": "PrestaPrenda Go payment methods including cards, branch payments and other banks.",
+      "width": 1080,
+      "height": 1920
+    }
+  ],
+  "links": [
+    {
+      "label": "PrestaPrenda Go on Google Play",
+      "url": "https://play.google.com/store/apps/details?id=com.upax.prestaprenda"
+    }
+  ],
+  "presentation": "reference-sequence",
+  "channel": "Android",
+  "referenceLabel": "Available on Android"
+},
   {
     "id": "project-4",
     "images": [

@@ -106,6 +106,7 @@ section { padding: var(--section-space) var(--gutter); }
 .project-visual { display: flex; align-items: center; justify-content: center; aspect-ratio: var(--project-image-ratio); width: 100%; border-bottom: 1px solid var(--line); padding: 36px; }
 .project-logo { width: auto; height: auto; max-width: 70%; max-height: 56px; object-fit: contain; filter: grayscale(1); }
 .brand-uix { filter: grayscale(1) brightness(0); }
+.project-visual .prestaprenda-logo { width: 200px; height: auto; max-height: 68px; }
 .project-visual .brand-placeholder { font: 400 25px/1.2 var(--heading); text-align: center; }
 .project-year { margin: 0; }
 .project-name { font: 500 29px/1.15 var(--heading); margin: 0; letter-spacing: -.015em; }
